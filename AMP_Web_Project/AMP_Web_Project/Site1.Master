@@ -1,0 +1,290 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="AMP_Web_Project.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>MCEC Amendments Configuration - EBMS Prod</title>
+    <meta name="description" content="MCEC Amendments Settings" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.css" />
+    
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        a.pagor {
+	height:20px;
+	padding-left:4px;
+	padding-right:4px;
+	display:block;
+	float:left;
+	border:1px solid #CCC;
+	color: #444;
+	margin-right:4px;
+	text-decoration:none;
+	text-align:center;
+}
+
+a.pagor:hover {
+	background:#ADDADC;
+	border:1px solid #33A8AD;
+	color:white;
+}
+
+a.selected {
+	background:#A3E9EC;
+	border:1px solid #6DCED2;
+}
+    </style>
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+<!--[if IE]>
+    <script src="assets/js/json2.js"></script>
+    <![endif]-->
+     
+         <script src="assets/js/jquery-2.0.3.min.js"></script>
+    
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="assets/js/jquery-1.10.2.min.js"></script>
+
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-tag.min.js"></script>
+		<script src="assets/js/jquery.hotkeys.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/ace.min.js"></script>
+    <script src="assets/js/ace-elements.min.js"></script>
+		
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-paw"></i>
+							MCEC Amendment Configuration - EBMS Prod
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+               
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+                        <li class="dropdown dropdown-lg">                            
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">								
+								<i class="fa fa-cog"></i>
+							</a>
+                            <ul class="dropdown-menu pull-right dropdown-navbar dropdown-menu dropdown-caret">
+                                <li> <a>
+                                    <div class="clearfix">
+										<span class="pull-left"><i class="btn btn-xs no-hover btn-primary fa fa-users"></i>&nbsp;Department: </span>                                        
+                                        <span class="pull-right"><asp:Label ID="lbDepartmentName" runat="server" Text=""></asp:Label>  </span>
+									</div>
+                                    </a>
+                                </li>
+                                <li>   <a>
+                                    <div class="clearfix">
+										<span class="pull-left"><i class="btn btn-xs no-hover btn-danger icon-comment"></i>&nbsp;Notify Method: </span>
+                                        <span class="pull-right"><asp:Label ID="lbNotifyMethod"  runat="server" Text=""></asp:Label></span>
+									</div>
+                                    </a>                                                                      
+                                </li>
+                                <li> 
+                                   <a>
+                                    <div class="clearfix">
+										<span class="pull-left"><i class="btn btn-xs no-hover btn-pink icon-user"></i>&nbsp;User Id: </span>
+                                        <span class="pull-right"><asp:Label ID="lbNotifyUser"  runat="server" Text=""></asp:Label></span>
+									</div>
+                                    </a>                                      
+                                </li>
+                                <li id="liupdate" runat="server">
+									<a href="#"  onclick="javascript:$('#update-user-modal').modal('show');">
+                                       
+                                        <i class="fa fa-address-card-o"></i>
+										Update</a>
+								</li>
+                                <li class="divider"></li>
+
+								<li>
+									<a href="#" onclick="window.location.href='logout.aspx'">
+										<i class="icon-off"></i>
+										Logout
+									</a>
+								</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+    <form id="form1" runat="server">
+        <asp:HiddenField ID="username" runat="server" />
+        <asp:HiddenField ID="departmentid" runat="server" />
+         <asp:HiddenField ID="departmentname" runat="server" />
+         <asp:HiddenField ID="dep_userid" runat="server" />
+        <asp:HiddenField ID="notify_method" runat="server" />
+        <asp:HiddenField ID="emailaddress" runat="server" />
+        <asp:HiddenField ID="isSuperUser" runat="server" />
+
+        <div class="modal fade" id="update-user-modal" role="dialog" aria-labelledby="">
+            <div class="modal-dialog">
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<h4 class="header green lighter bigger">
+						<i class="icon-group blue"></i>
+						Update Department/User
+					</h4>
+
+					<div class="space-6"></div>
+											
+					<div class="space-6"></div>
+                 <fieldset>
+                    <div class="form-horizontal" role="form" id="frmDept">
+                        <div class="row">                                                           
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="txtdeptid"> Department Id: </label>
+
+							<div class="col-sm-6">
+								<input type="text" id="txtdeptid" placeholder="" class="col-xs-12 col-sm-8 col-md-10" runat="server" readonly="readonly" />
+							</div>
+						</div>
+                        <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="txtdeptname"> Description: </label>
+
+							<div class="col-sm-6">
+								<input  type="text" id="txtdeptname" placeholder="" class="col-xs-12 col-sm-12 col-md-12" runat="server"  />
+							</div>
+						</div>	
+                        <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="selmethod">Notify Method:</label>
+
+							<div class="col-sm-6">
+								<select class="form-control" id="selmethod" runat="server" onchange="changeNotifyMethod();">
+                                    <option value="Activity">Activity</option>
+                                    <option value="Email">Email</option>                                    
+					        </select>
+							</div>
+						</div>    							                       
+                        <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" id="lbNotifyUserId" for="txtUserId" runat="server">Notify User Id: </label>
+
+							<div class="col-sm-6">
+								<input  type="text" id="txtUserId" placeholder="" class="col-xs-12 col-sm-8 col-md-10" runat="server"  />
+							</div>
+						</div>
+                          <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="txtwindowsuser">Manager User Id: </label>
+
+							<div class="col-sm-6">
+								<input  type="text" id="txtwindowsuser" placeholder="" class="col-xs-12 col-sm-8 col-md-10" runat="server"  />
+							</div>
+						</div>                              
+                        </div>
+					</div>
+                    <hr />
+                    <div class="clearfix">	
+                        <a id="btnupdate" class="width-45 pull-right btn btn-sm btn-primary" onclick ="upddept()"  >Update</a>
+					</div>
+				</fieldset>																		
+				</div>
+			</div><!-- /widget-body -->
+                </div>
+		</div><!-- /signup-box -->
+							
+
+
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Services>
+                <asp:ServiceReference Path="~/WebService1.asmx" />
+            </Services>
+        </asp:ScriptManager>
+    <div class="main-container">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+    <script>
+
+        function changeNotifyMethod()
+        {
+            if ($('#selmethod').val() == "Email")
+            {
+                $('#lbNotifyUserId').text("Email Address:");
+            }
+            else
+            {
+                $('#lbNotifyUserId').text("Notify User Id:");
+            }
+        }
+
+     function upddept()
+     {         
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "WebService1.asmx/UpdateDepartment",
+                    data: "{'strDeptCode':'" + $('#txtdeptid').val() + "',  'strDeptDesc':'" + $('#txtdeptname').val() + "',  'strUserId':'" + $('#txtUserId').val() + "',  'strNotiMethod':'" + $('#selmethod').val() + "',  'strWindowsUser':'" + $('#txtwindowsuser').val().toString().toLowerCase() + "',  'strEmailAddress':'" + $('#txtUserId').val() + "' }",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function (response) { location.reload(); },
+                    failure: function (e) { alert(e); }
+                });
+            }
+            catch (e) {
+                alert('failed to call web service. Error: ' + e);
+            }
+        }
+        </script>
+
+</html>
