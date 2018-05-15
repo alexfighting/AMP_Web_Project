@@ -165,7 +165,7 @@ namespace AMP_Web_Project
 
                     if (!isExist)
                     {
-                        string strSQL = "insert into Noti_Dept(Noti_Dep_Code,Noti_Dep_Desc,Dep_User_Id,Noti_Method,WindowsLoginManager,EmailAddress) values (@deptcode,@deptdesc,@userid,@notimethod,@windowsuser,@emailaddress)";
+                        string strSQL = "insert into Noti_Dept(Noti_Dep_Code,Noti_Dep_Desc,Dep_User_Id,Noti_Method,WindowsLoginManager,EmailAddress,Status ) values (@deptcode,@deptdesc,@userid,@notimethod,@windowsuser,@emailaddress,'1')";
 
                         SqlCommand comm = new SqlCommand(strSQL, conn);
                         comm.Parameters.Add("@deptcode", SqlDbType.VarChar, 20).Value = strDeptCode;

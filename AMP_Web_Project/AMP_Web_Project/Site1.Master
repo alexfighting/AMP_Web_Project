@@ -255,6 +255,7 @@ a.selected {
     </form>
 </body>
     <script>
+        console.log('hello world');
 
         function changeNotifyMethod()
         {

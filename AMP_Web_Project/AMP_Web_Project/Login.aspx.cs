@@ -17,7 +17,7 @@ namespace AMP_Web_Project
             strLoginUser = Request.ServerVariables["LOGON_USER"].ToString(); 
 
             if (!string.IsNullOrEmpty(strLoginUser))
-            {
+            {                
                 strLoginUser = strLoginUser.ToLower().Replace(@"mecc\", "");
 
                 isSuper = CheckSuperUser(strLoginUser);
