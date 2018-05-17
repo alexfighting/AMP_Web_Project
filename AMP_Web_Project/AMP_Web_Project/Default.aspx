@@ -800,12 +800,30 @@
 
         }
 
-        function updres(restype, rescode, action, pageindex) {            
+        function updres(restype, rescode, action, pageindex) {
+            var nPageRows = 18;
+            
+            if ($("#slshowrecordsshowres").val() == undefined) {
+                nPageRows = 18;
+            }
+            else {
+                if ($("#slshowrecordsshowres").val() != "") {
+                    nPageRows = $("#slshowrecordsshowres").val();
+                    $("#slshowrecordsshowres").val(nPageRows);
+                }
+                else {
+                    nPageRows = 18;
+                    $("#slshowrecordsshowres").val(nPageRows);
+                }
+            }
+            
+
+            alert("{'strDeptCode':'" + departmentid + "',  'ResourceType':'" + restype + "', 'ResourceCode':'" + rescode + "', 'Action':'" + action + "', 'nPageIndex':" + pageindex + ",'nPageRows':" + nPageRows + ",'strSearchDept':'" + $("#sldept").val() + "', 'strSearchKeyWords':'" + $("#txtsearchresource").val() + "'}");
             try {
                 $.ajax({
                     type: "POST",
                     url: "WebService1.asmx/UpdateResource",
-                    data: "{'strDeptCode':'" + departmentid + "',  'ResourceType':'" + restype + "', 'ResourceCode':'" + rescode + "', 'Action':'" + action + "', 'nPageIndex':" + pageindex + ",'nPageRows':" + $("#slshowrecordsshowres").val() + ",'strSearchDept':'" + $("#sldept").val() + "', 'strSearchKeyWords':'" + $("#txtsearchresource").val() + "'}",
+                    data: "{'strDeptCode':'" + departmentid + "',  'ResourceType':'" + restype + "', 'ResourceCode':'" + rescode + "', 'Action':'" + action + "', 'nPageIndex':" + pageindex + ",'nPageRows':" + nPageRows + ",'strSearchDept':'" + $("#sldept").val() + "', 'strSearchKeyWords':'" + $("#txtsearchresource").val() + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) { showres(pageindex); },
